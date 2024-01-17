@@ -23,12 +23,14 @@ import { US } from 'country-flag-icons/react/3x2'
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Verification = {
-    ref: string
+    country: string;
+    email: string;
+    name: string;
+    ref: string;
     risk: "Low Risk" | "High Risk" | "Medium Risk";
+    status: "pending" | "processing" | "success" | "failed";
     submission: Date;
-    status: "pending" | "processing" | "success" | "failed"
     tags: string[];
-    name: {fullName: string, email: string, country: string}
 }
 
 export const columns: ColumnDef<Verification>[] = [
@@ -67,10 +69,14 @@ export const columns: ColumnDef<Verification>[] = [
         }
     },
     {
+        id:"searchable",
         accessorKey: "name",
         header: "Name",
         cell: ({ row }) => {
-            const {fullName, email, country} = row.getValue("name") as Verification["name"]
+            const fullName = row.original.name
+            const email = row.original.email
+            const country = row.original.country
+
             return <div className={'flex gap-2 items-center'}>
                 {/*<img*/}
                 {/*    src={countries[country].mini}*/}
@@ -128,10 +134,12 @@ export const columns: ColumnDef<Verification>[] = [
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
+                        <DropdownMenuItem>View customer</DropdownMenuItem>
+                        <DropdownMenuSeparator />
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
+                        <DropdownMenuItem>Accept</DropdownMenuItem>
+                        <DropdownMenuItem>Reject</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )
