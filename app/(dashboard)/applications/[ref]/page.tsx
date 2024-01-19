@@ -36,12 +36,13 @@ function createRandomUser() {
 function Page({params}: {params: {ref: string}}) {
     return (
         <>
-            <HeadCustomer customerRef={params.ref} status={faker.helpers.arrayElement(["pending", "approved", "rejected"])}/>
+            <HeadCustomer customerRef={params.ref} status={"pending"}/>
 
             <div className={'mt-8 flex flex-col gap-6'}>
 
-                <CustomerCard title={"Profile"} className={'grid-cols-[6fr,3fr]'}>
-                    <div className={'grid grid-cols-3 gap-4 gap-y-10'}>
+                <CustomerCard title={"Profile"} className={'grid-cols-[6fr,3fr] max-lg:grid-cols-1'}>
+
+                    <div className={'grid grid-cols-3 gap-4 gap-y-10 max-lg:grid-cols-2 max-sm:cols-1 max-lg:order-2 max-sm:grid-cols-1 max-md:gap-y-4'}>
                         <Info title={'First Name'}> Tahhar </Info>
                         <Info title={'Middle Name'}> - </Info>
                         <Info title={'Last Name'}> Arcandra </Info>
@@ -59,14 +60,14 @@ function Page({params}: {params: {ref: string}}) {
                         <Info title={'Age'}> 35 </Info>
                     </div>
 
-                    <div className={'flex flex-col gap-4'}>
+                    <div className={'flex flex-col gap-4 max-lg:order-1'}>
                         <Image src={"/passport.png"} alt={"passport"} width={368} height={240} className={"w-11/12"}/>
                         <div className={'flex gap-4 items-center'}>
                             <Image src={"/selfie.png"} alt={"selfie"} width={61} height={82}/>
                             <Image src={"/address.png"} alt={"address"}  width={61} height={82}/>
                         </div>
 
-                        <div className={'grid grid-cols-2 mt-auto'}>
+                        <div className={'grid grid-cols-2 mt-auto max-lg:mt-8 max-md:mt-2'}>
                             <Info title={'Face Match'}> <span className={"text-green-500"}> Success </span> </Info>
 
                             <Info title={'Score'}> <span className={"text-green-500"}> 0.8 </span> </Info>

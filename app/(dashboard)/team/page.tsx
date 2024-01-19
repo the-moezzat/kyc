@@ -34,11 +34,10 @@ export default function Page() {
     const  users = getData(5);
 
     return <>
-        <div className={"flex justify-between"}>
+        <div className={"flex justify-between max-md:flex-col gap-4"}>
             <div>
                 <h1 className={'font-semibold text-gray-900 text-3xl'}>Team members</h1>
                 <p className={"text-gray-600 mt-2"}>Manage your team members and their account permissions here.</p>
-
             </div>
             <Button variant={"outline"} className={"shadow-sm text-gray-700 font-semibold space-x-2"}>
                 <Plus/>
@@ -50,7 +49,7 @@ export default function Page() {
 
         <Separator orientation="horizontal" className="my-6"/>
 
-        <div className={"grid grid-cols-[2fr,6fr] gap-8"}>
+        <div className={"grid grid-cols-[2fr,6fr] gap-8 max-md:grid-cols-1"}>
             <div>
                 <h2 className={"font-semibold text-gray-800 text-lg"}>Admin users</h2>
                 <p className={"text-gray-600 text-lg"}>Admins can add and remove users and manage organization-level
@@ -61,12 +60,12 @@ export default function Page() {
 
         <Separator orientation="horizontal" className="my-6"/>
 
-        <div className={"grid grid-cols-[2fr,6fr] gap-8"}>
+        <div className={"grid grid-cols-[2fr,6fr] gap-8 max-md:grid-cols-1"}>
             <div>
                 <h2 className={"font-semibold text-gray-800 text-lg"}>Account users</h2>
                 <p className={"text-gray-600 text-lg"}>Account users can assess and review risks, questionnaires, data leaks and identify breaches.</p>
             </div>
-            <DataTable columns={columns} data={users} title={"Admins"}/>
+            <DataTable columns={columns} data={users} title={"Users"}/>
         </div>
     </>
 }

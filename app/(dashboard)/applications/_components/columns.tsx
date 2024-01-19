@@ -65,7 +65,7 @@ export const columns: ColumnDef<Verification>[] = [
         header: "Risk level",
         cell: ({ row }) => {
             const risk = row.getValue("risk") as Verification["risk"]
-            return (<Badge variant={risk === "Low Risk" ? "success" : risk === "Medium Risk" ? "warning" : "danger"}>{row.getValue("risk")}</Badge>)
+            return (<Badge className={"w-max"} variant={risk === "Low Risk" ? "success" : risk === "Medium Risk" ? "warning" : "danger"}>{row.getValue("risk")}</Badge>)
         }
     },
     {
@@ -115,7 +115,7 @@ export const columns: ColumnDef<Verification>[] = [
         cell: ({ row }) => {
             const tags = row.getValue("tags") as Verification["tags"]
             return <div className={'flex gap-1'}>
-                {tags.map((tag, i) => <Badge key={i} variant={'outline'}>{tag}</Badge>)}
+                {tags.map((tag, i) => <Badge className={"w-max"}  key={i} variant={'outline'}>{tag}</Badge>)}
             </div>
         }
     },

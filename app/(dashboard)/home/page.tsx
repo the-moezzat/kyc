@@ -33,7 +33,8 @@ export default function Page() {
 
     return <div>
         <h1 className={'font-semibold text-gray-900 text-3xl'}>Home</h1>
-        <div className={'grid grid-cols-4 gap-5 mt-12'}>
+
+        <div className={'grid grid-cols-4 gap-5 mt-12 max-md:mt-6 max-md:flex max-md:flex-col'}>
             <OverflowCard title={"Total"} value={230} color={" text-[hsla(206,100%,50%,1)] bg-[hsla(206,100%,97%,1)]"}/>
             <OverflowCard title={"Pending"} value={60} color={" text-[hsla(40,100%,50%,1)] bg-[hsla(40,100%,89%,1)]  "}/>
             <OverflowCard title={"Approved"} value={160} color={"text-[hsla(145,81%,50%,1)] bg-[hsla(145,81%,96%,1)] "}/>

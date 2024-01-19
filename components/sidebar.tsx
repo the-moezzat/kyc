@@ -66,18 +66,16 @@ export default function Sidebar() {
                 </Avatar>
             </div>
 
-            <div>
+            <div className={"md:hidden"}>
                 <Sheet>
                     <SheetTrigger asChild>
                         <Button size={'icon'} variant={"outline"} className={"text-gray-900"}>
                             <Menu/>
                         </Button>
                     </SheetTrigger>
-                    <SheetContent side={"left"} className={"flex flex-col"}>
-                        <SheetHeader>
-                            {/*<SheetTitle>Menu</SheetTitle>*/}
 
-                        </SheetHeader>
+                    <SheetContent side={"left"} className={"flex flex-col"}>
+
                         <SheetDescription>
                             <nav className={'flex flex-col text-gray-500 gap-2'}>
                                 {nav.map((item, index) => (

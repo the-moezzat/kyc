@@ -48,8 +48,8 @@ export  function DataTable<TData, TValue>({
 
     return (
         <div className="rounded-md border">
-            <div className={'border-b p-4 flex justify-between items-center'}>
-                <h2 className={'text-lg font-medium text-gray-800'}>{title}</h2>
+            <div className={'border-b p-4 flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2'}>
+                <h2 className={'text-lg font-medium text-gray-800 shrink-0 grow'}>{title}</h2>
                     <Input
                         placeholder="Filter emails..."
                         value={(table.getColumn("searchable")?.getFilterValue() as string) ?? ""}

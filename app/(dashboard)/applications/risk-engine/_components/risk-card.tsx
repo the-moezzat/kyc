@@ -11,6 +11,7 @@ import RiskEvaluation from "@/app/(dashboard)/applications/risk-engine/_componen
 import Condition from "@/app/(dashboard)/applications/risk-engine/_components/condition";
 import { Switch } from "@/components/ui/switch"
 import countries from 'i18n-iso-countries';
+import {Separator} from "@/components/ui/separator";
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 interface Props {
@@ -35,6 +36,7 @@ function RiskCard({country}: Props) {
                     </span>
                 </CardTitle>
             </CardHeader>
+
             <CardContent className={"py-6 flex flex-col gap-5"}>
                 <RiskEvaluation title={"Account Balance:"}>
                     <div className={'flex gap-8 items-center'}>
@@ -46,6 +48,9 @@ function RiskCard({country}: Props) {
                         </div>
                     </div>
                 </RiskEvaluation>
+
+                <Separator orientation={'horizontal'} />
+
                 <RiskEvaluation title={"Salary"}>
                     <div className={'flex gap-8 items-center'}>
                         <span className={"text-lg font-semibold"}>If</span>
@@ -56,6 +61,9 @@ function RiskCard({country}: Props) {
                         </div>
                     </div>
                 </RiskEvaluation>
+
+                <Separator orientation={'horizontal'}   />
+
                 <RiskEvaluation title={"Employed"}>
                     <div className={'flex gap-4 items-center'}>
                         <span className={"text-lg font-medium"}>No</span>
