@@ -1,11 +1,21 @@
 'use client';
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link";
-import {CopyCheck, LifeBuoy, Users, Link2 } from "lucide-react";
+import {CopyCheck, LifeBuoy, Users, Link2, Menu} from "lucide-react";
 import Icon from "@/components/icon";
 import {usePathname} from "next/navigation";
 import Image from "next/image";
+import React from "react";
+import {Button} from "@/components/ui/button";
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription, SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
+
 
 const nav = [{
     name: 'Home',
@@ -30,11 +40,12 @@ export default function Sidebar() {
     const pathname = usePathname().split("/")[1]
 
     return (
-        <div className={'border-r py-4 flex flex-col gap-6 items-center'}>
+        <div className={'border-r py-4 flex flex-col gap-6 items-center max-md:flex-row max-md:justify-between max-md:shadow-sm max-md:border-b max-md:border-r-0 max-md:px-4 max-md:py-2'}>
             <Link href={"/"}>
                 <Image src={"/logo.svg"} alt={"Logo"} width={38} height={38} />
             </Link>
-            <nav className={'flex flex-col text-gray-500 items-center gap-2'}>
+
+            <nav className={'flex flex-col text-gray-500 items-center gap-2 max-md:hidden'}>
                 {nav.map((item, index) => (
                     <Link
                         key={item.name}
@@ -45,8 +56,7 @@ export default function Sidebar() {
                 </Link>))}
 
             </nav>
-
-            <div className={'flex flex-col items-center gap-6 mt-auto'}>
+            <div className={'flex flex-col items-center gap-6 mt-auto max-md:hidden'}>
                 <Link href="#" className={'text-gray-500'}>
                     <LifeBuoy />
                 </Link>
@@ -54,6 +64,63 @@ export default function Sidebar() {
                     <AvatarImage src="https://github.com/shadcn.png" />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
+            </div>
+
+            <div>
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <Button size={'icon'} variant={"outline"} className={"text-gray-900"}>
+                            <Menu/>
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side={"left"} className={"flex flex-col"}>
+                        <SheetHeader>
+                            {/*<SheetTitle>Menu</SheetTitle>*/}
+
+                        </SheetHeader>
+                        <SheetDescription>
+                            <nav className={'flex flex-col text-gray-500 gap-2'}>
+                                {nav.map((item, index) => (
+                                    <Link
+                                        key={item.name}
+                                        className={`transition-all p-3 rounded-lg ${`/${pathname}` === item.href ? 'text-gray-600 bg-[hsla(210,100%,95%,1)]' : ""}`}
+                                        href={item.href}
+                                    >
+                                        {item.icon ?
+                                            <span className={'flex gap-4 items-center'}>
+                                                    <item.icon/>
+                                                    <span>{item.name}</span>
+                                                </span>
+                                            : item.name}
+                                    </Link>))}
+
+                            </nav>
+                        </SheetDescription>
+
+                        <SheetFooter className={"mt-auto self-start"}>
+                            <div className={'flex flex-col gap-6'}>
+                                <Link href="#" className={'text-gray-500 ml-2 flex gap-4 items-center'}>
+                                    <LifeBuoy/>
+                                    <span>Help center</span>
+                                </Link>
+                                <div className={'flex gap-2 items-center'}>
+                                    <Avatar>
+                                        <AvatarImage src="https://github.com/shadcn.png"/>
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar>
+                                    <div className={'flex flex-col'}>
+                                        <span className={'font-medium text-gray-800'}>
+                                            Firas El-Mohasen
+                                        </span>
+                                        <span className={'font-medium text-gray-500 text-sm'}>
+                                            firas@gmail.com
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </SheetFooter>
+                    </SheetContent>
+                </Sheet>
             </div>
         </div>
     )
