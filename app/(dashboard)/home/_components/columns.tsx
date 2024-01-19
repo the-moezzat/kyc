@@ -5,7 +5,6 @@ import {Badge} from "@/components/ui/badge";
 import { MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -14,9 +13,9 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import countries from "@/lib/counry";
+// import countries from "@/lib/counry";
 import "flag-icons/css/flag-icons.min.css";
-import { US } from 'country-flag-icons/react/3x2'
+// import { US } from 'country-flag-icons/react/3x2'
 
 
 
@@ -122,9 +121,7 @@ export const columns: ColumnDef<Verification>[] = [
 
     {
         id: "actions",
-        cell: ({row }) => {
-            const payment = row.original
-
+        cell: () => {
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>

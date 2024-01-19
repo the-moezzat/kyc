@@ -9,27 +9,25 @@ import Image from "next/image";
 
 const nav = [{
     name: 'Home',
-    href: 'home',
+    href: '/home',
     icon: Icon.Home
 }, {
     name: 'Applications',
-    href: 'applications',
+    href: '/applications',
     icon: CopyCheck
 }, {
     name: 'Links',
-    href: 'links',
+    href: '/links',
     icon: Link2
 }, {
     name: 'Team',
-    href: 'team',
+    href: '/team',
     icon: Users
 }]
 
 export default function Sidebar() {
     // Get current pathname and remove / from the beginning
     const pathname = usePathname().split("/")[1]
-
-    console.log(pathname)
 
     return (
         <div className={'border-r py-4 flex flex-col gap-6 items-center'}>
@@ -40,7 +38,7 @@ export default function Sidebar() {
                 {nav.map((item, index) => (
                     <Link
                         key={item.name}
-                        className={`transition-all p-3 rounded-lg ${pathname === item.href ? 'text-gray-600 bg-[hsla(210,100%,95%,1)]' : ""}`}
+                        className={`transition-all p-3 rounded-lg ${`/${pathname}` === item.href ? 'text-gray-600 bg-[hsla(210,100%,95%,1)]' : ""}`}
                         href={item.href}
                     >
                     {item.icon ? <item.icon /> : item.name}

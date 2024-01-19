@@ -3,6 +3,8 @@ import { Separator } from '@/components/ui/separator';
 import {DataTable} from "@/components/ui/data-table";
 import {columns, Verification} from "./_components/columns";
 import { faker } from '@faker-js/faker';
+import {Button} from "@/components/ui/button";
+import Link from "next/link";
 
 function createRandomUser(): Verification {
     const firstName = faker.person.firstName();
@@ -36,7 +38,12 @@ export default function Page() {
     const rejected = getData(2)
 
     return <>
-        <h1 className={'font-semibold text-gray-900 text-3xl'}>Applications</h1>
+        <header className={'flex items-center justify-between'}>
+            <h1 className={'font-semibold text-gray-900 text-3xl'}>Applications</h1>
+            <Link href={'/applications/risk-engine'}>
+                <Button variant={'outline'}  className={"font-semibold shadow-sm"}>Risk Engine</Button>
+            </Link>
+        </header>
         <Tabs defaultValue="pending" className="w-full mt-8">
             <TabsList>
                 <TabsTrigger value="pending">Pending</TabsTrigger>

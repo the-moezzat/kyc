@@ -16,6 +16,7 @@ import {
 import countries from "@/lib/counry";
 import "flag-icons/css/flag-icons.min.css";
 import { US } from 'country-flag-icons/react/3x2'
+import Link from "next/link";
 
 
 
@@ -122,7 +123,7 @@ export const columns: ColumnDef<Verification>[] = [
     {
         id: "actions",
         cell: ({row }) => {
-            const payment = row.original
+            const customer = row.original
 
             return (
                 <DropdownMenu>
@@ -133,7 +134,11 @@ export const columns: ColumnDef<Verification>[] = [
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Link href={"/applications/"+customer.ref}>
+                                View customer
+                            </Link>
+                        </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
