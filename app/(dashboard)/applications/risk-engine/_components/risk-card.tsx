@@ -6,12 +6,12 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import "flag-icons/css/flag-icons.min.css";
 import RiskEvaluation from "@/app/(dashboard)/applications/risk-engine/_components/risk-evaluation";
 import Condition from "@/app/(dashboard)/applications/risk-engine/_components/condition";
 import { Switch } from "@/components/ui/switch"
-import countries from 'i18n-iso-countries';
 import {Separator} from "@/components/ui/separator";
+import "flag-icons/css/flag-icons.min.css";
+import countries from 'i18n-iso-countries';
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 interface Props {
@@ -23,8 +23,6 @@ function RiskCard({country}: Props) {
     const countryName = country.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
     const countryCode = countries.getAlpha2Code(countryName, "en");
 
-    console.log("United States of America => " + countries.getAlpha2Code(country, "en"));
-    // turn country to lowecase and then make the first letter uppercase
 
     return (
         <Card>
