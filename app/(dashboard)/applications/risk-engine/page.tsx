@@ -22,9 +22,9 @@ function Page() {
             </header>
 
             <div className={'space-y-8'}>
-                <RiskCard country={'Palestine'}/>
-                <RiskCard country={'Egypt'}/>
-                <RiskCard country={'Saudi Arabia'}/>
+                <RiskCard country={'Nigeria'}/>
+                <RiskCard country={'India'}/>
+                <RiskCard country={'Indonesia'}/>
             </div>
         </>
     );

@@ -16,7 +16,7 @@ function Task({done, icon, subtitle, title, description}: Props) {
             </div>
             <div className={'flex flex-col'}>
                 <span className={"text-xs text-green-600 tracking-wide"}>{subtitle}</span>
-                <h3 className={"text-lg font-semibold text-gray-800"}>{title}</h3>
+                <h3 className={"text-base font-semibold text-gray-800"}>{title}</h3>
                 <p className={"text-xs text-gray-600"}>{description}</p>
             </div>
             <div className={`w-8 h-8 flex items-center justify-center rounded-full ${ done ? "text-white bg-[#00A980]" : "bg-[#D3D3D3] text-[#404040]"}`}>

@@ -10,12 +10,14 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import {Button} from "@/components/ui/button";
-
+import {Trash2} from "lucide-react";
 export default function DeleteLink() {
 
     return <AlertDialog>
         <AlertDialogTrigger asChild>
-            <Button variant={"ghost"} className={"text-red-600 font-medium text-base hover:text-red-700 hover:bg-red-100"}>Delete</Button>
+            <Button variant={"ghost"} className={" font-medium text-base text-red-600 hover:text-red-700 hover:bg-red-100"} size={'icon'}>
+                <Trash2 size={20}/>
+            </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>

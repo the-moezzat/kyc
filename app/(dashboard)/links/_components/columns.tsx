@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import CopiedText from "@/app/(dashboard)/links/_components/copied-link";
 import DeleteLink from "@/app/(dashboard)/links/_components/delete-link";
+import {Pen} from "lucide-react";
 
 export type KYCLinks = {
     name: string
@@ -60,7 +61,14 @@ export const columns: ColumnDef<KYCLinks>[] = [
     {
         id: "actions",
         cell: () => {
-            return (<DeleteLink/>)
+            return (<div className={"flex gap-4 items-center"}>
+                    <Button size={'icon'} variant={'ghost'}>
+                        <Pen size={20}/>
+                    </Button>
+                    <DeleteLink/>
+            </div>
+
+        )
         },
     },
 ]

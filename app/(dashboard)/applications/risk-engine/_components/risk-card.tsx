@@ -38,7 +38,7 @@ function RiskCard({country}: Props) {
             <CardContent className={"py-6 flex flex-col gap-5"}>
                 <RiskEvaluation title={"Account Balance:"}>
                     <div className={'flex gap-8 items-center'}>
-                        <span className={"text-lg font-semibold"}>If</span>
+                        <span className={"text-lg text-gray-600 font-medium"}>If</span>
                         <div className={'flex flex-col gap-4'}>
                             <Condition where={'>='} evaluation={"Low Risk"} value={'$1000'}/>
                             <Condition where={'> , <'} evaluation={"Medium Risk"} value={'$1000'}/>
@@ -51,7 +51,7 @@ function RiskCard({country}: Props) {
 
                 <RiskEvaluation title={"Salary"}>
                     <div className={'flex gap-8 items-center'}>
-                        <span className={"text-lg font-semibold"}>If</span>
+                        <span className={"text-lg text-gray-600 font-medium"}>If</span>
                         <div className={'flex flex-col gap-4'}>
                             <Condition where={'>='} evaluation={"Low Risk"} value={'$1000'}/>
                             <Condition where={'> , <'} evaluation={"Medium Risk"} value={'$1000'}/>

@@ -16,7 +16,7 @@ function Condition({value, evaluation, where}: Props) {
             </div>
             <div className={'flex gap-2 items-center'}>
                 <span>Then</span>
-                <div className={`p-2 px-4 rounded-lg ${evaluation === "Low Risk"? "bg-green-100 text-green-600" : evaluation === "Medium Risk" ? "bg-yellow-100 text-yellow-600" : "bg-red-100 text-red-600"}`}> {evaluation}</div>
+                <div className={`p-2 px-4 rounded-lg text-sm ${evaluation === "Low Risk"? "bg-green-100 text-green-600" : evaluation === "Medium Risk" ? "bg-yellow-100 text-yellow-600" : "bg-red-100 text-red-600"}`}> {evaluation}</div>
             </div>
         </div>
     );

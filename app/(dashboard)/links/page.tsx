@@ -6,6 +6,15 @@ import {DataTable} from "@/components/ui/data-table";
 import { faker } from '@faker-js/faker';
 import {Button} from "@/components/ui/button";
 import {Plus} from "lucide-react";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import AddLink from "@/app/(dashboard)/links/_components/add-link";
 
 function createRandomUser(): KYCLinks {
     return {
@@ -31,12 +40,7 @@ export default function Page() {
     return <>
         <div className={'flex justify-between'}>
             <h1 className={'font-semibold text-gray-900 text-3xl'}>KYC Links</h1>
-            <Button className={'flex gap-2'}>
-                <Plus size={20}/>
-                <span>
-                Link
-                </span>
-            </Button>
+            <AddLink/>
         </div>
         <Tabs defaultValue="active" className="w-full mt-8">
             <TabsList>
