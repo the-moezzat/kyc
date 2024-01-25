@@ -16,9 +16,9 @@ function Country({name, selected, onClick}: Props) {
         <div className={`flex items-center gap-2 text-lg border rounded-lg p-4 ${selected ? "bg-gray-200" : ""}`} onClick={() => onClick?.()}>
 
                 <span className={`fi fi-${countryCode?.toLowerCase()} rounded-sm overflow-hidden shrink-0`}></span>
-                <span className={'text-gray-700'}>
+                <p className={'text-gray-700'}>
                     {countryName}
-                </span>
+                </p>
         </div>
     );
 }

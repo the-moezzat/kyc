@@ -17,7 +17,7 @@ function StartVerification({title, icon}: Props) {
                 </h2>
             </div>
 
-            <div className={'flex flex-col gap-4 mt-8'}>
+            <div className={'flex flex-col gap-4 mt-8 px-4'}>
                 <StartVerificationItem title={"Secure"} icon={<Shield size={18}/>} description={`You're protected with industry-standard security and encryption.`}/>
 
                 <Separator orientation={'horizontal'} className={'w-10/12 self-center'}/>
