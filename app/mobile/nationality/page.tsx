@@ -13,8 +13,8 @@ function Page() {
 
     return (
         <div className={'items-center h-dvh grid grid-rows-[auto,1fr,auto] gap-6 p-4 w-full'}>
-            <h1 className={'text-2xl font-bold text-center text-gray-900'}>Select your nationality</h1>
-            <div className={"w-full flex gap-2 flex-col justify-center overflow-auto h-full"}>
+            <h1 className={'text-2xl font-bold text-center text-gray-900'}>Select Your Nationality</h1>
+            <div className={"w-full flex gap-2 flex-col justify-start overflow-auto h-full mt-8"}>
                 {/*<Input placeholder={"Search for country"} className={"h-14 w-full sticky top-0 shrink-0 z-30 shadow-lg"}/>*/}
                 {countries.map((country) => ( <Country key={country} name={country} onClick={() => setSelectedCountry(country)} selected={ selectedCountry === country}/>)) }
             </div>
