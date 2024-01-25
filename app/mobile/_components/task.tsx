@@ -7,8 +7,9 @@ interface Props {
     subtitle: string;
     title: string;
     description: string;
+    at?: string;
 }
-function Task({done, icon, subtitle, title, description}: Props) {
+function Task({done, icon, subtitle, title, description, at}: Props) {
     return (
         <div className={"border rounded-lg px-3 py-3 grid grid-cols-[auto,1fr,auto] gap-2 items-center w-full"}>
             <div className={"text-primary"}>

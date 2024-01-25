@@ -7,16 +7,18 @@ import Icon from "@/components/icon";
 
 const tasks = [{
     icon: <Icon.Bank />,
-    title: " Bank Statement ",
+    title: " Income ",
     subtitle: " Instant Verification ",
     description: "  Upload last 3 months bank statements",
     done: true,
+    at: "/mobile/income-verification"
 },{
     icon: <Icon.BriefCase/>,
     title: " Employment",
     subtitle: "  Instant Verification",
     description: "  Upload last 3 months bank statements",
-    done: false
+    done: false,
+    at: "/mobile/employment-verification"
 },
 //     {
 //     icon: <MapPin size={32} /> ,
@@ -34,7 +36,7 @@ function Page() {
             </div>
 
             <div className={"flex flex-col gap-2 mt-4 mb-8"}>
-                {tasks.map((task) => ( <Link key={task.title} href={"/mobile/upload-files"}>
+                {tasks.map((task) => ( <Link key={task.title} href={task.at}>
                         <Task {...task}/>
                     </Link>)) }
             </div>
