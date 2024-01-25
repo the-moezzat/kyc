@@ -36,7 +36,7 @@ function createRandomUser() {
 function Page({params}: {params: {ref: string}}) {
     return (
         <>
-            <HeadCustomer customerRef={params.ref} status={"pending"}/>
+            <HeadCustomer customerRef={params.ref} status={faker.helpers.arrayElement(['pending', 'approved', 'rejected'])}/>
 
             <div className={'mt-8 flex flex-col gap-6'}>
 
@@ -75,7 +75,7 @@ function Page({params}: {params: {ref: string}}) {
                     </div>
                 </CustomerCard>
 
-                <CustomerCard title={"Risk Checks"} className={'grid-cols-3 '}>
+                <CustomerCard title={"Risk Checks"} className={'grid-cols-3 gap-y-10'}>
                     <Info title={'Passport Verification'}>
                         <div className={'flex gap-2 items-center'}>
                             <CheckCircle2 className={'text-green-500'}/>
@@ -127,7 +127,7 @@ function Page({params}: {params: {ref: string}}) {
 
                 </CustomerCard>
 
-                <CustomerCard title={"Employment Information"} className={'grid-cols-3 '}>
+                <CustomerCard title={"Employment Information"} className={'grid-cols-3 gap-y-10 '}>
                     <Info title={'Employment Status'}>Active</Info>
                     <Info title={'Months of Employment'}>23</Info>
                     <Info title={'Company Name'}>Telkom Indonesia</Info>

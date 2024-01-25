@@ -1,7 +1,7 @@
 "use client"
 import { ColumnDef } from "@tanstack/react-table"
 import {Badge} from "@/components/ui/badge";
-import { MoreHorizontal } from "lucide-react"
+import {Ban, FileCheck2, MoreHorizontal, View} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 
@@ -17,6 +17,12 @@ import countries from "@/lib/counry";
 import "flag-icons/css/flag-icons.min.css";
 import { US } from 'country-flag-icons/react/3x2'
 import Link from "next/link";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 
 
@@ -126,37 +132,42 @@ export const columns: ColumnDef<Verification>[] = [
             const customer = row.original
 
             return (
-                <div className={'flex gap-4 items-center'}>
-                    <Button variant={"ghost"} className={'h-fit p-0 text-red-500 font-medium'}>
-                        <span className=""> Reject </span>
-                    </Button>
-                    <Button variant={"ghost"} className={'h-fit p-0 text-green-500 font-medium'}>
-                        <span className=""> Accept </span>
-                    </Button>
-                    <Link href={"/applications/"+customer.ref} className={'text-blue-500 font-medium'}>
-                        <span className=""> View </span>
-                    </Link>
-                </div>
-                // <DropdownMenu>
-                //     <DropdownMenuTrigger asChild>
-                //         <Button variant="ghost" className="h-8 w-8 p-0">
-                //             <span className="sr-only">Open menu</span>
-                //             <MoreHorizontal className="h-4 w-4" />
-                //         </Button>
-                //     </DropdownMenuTrigger>
-                //     <DropdownMenuContent align="end">
-                //         <DropdownMenuItem>
-                //             <Link href={"/applications/"+customer.ref}>
-                //                 View customer
-                //             </Link>
-                //         </DropdownMenuItem>
-                //         <DropdownMenuSeparator />
-                //         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                //         <DropdownMenuSeparator />
-                //         <DropdownMenuItem>Accept</DropdownMenuItem>
-                //         <DropdownMenuItem>Reject</DropdownMenuItem>
-                //     </DropdownMenuContent>
-                // </DropdownMenu>
+                <TooltipProvider>
+                    <div className={'flex items-center justify-end'}>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Link href={"/applications/"+customer.ref} className={'text-gray-800 font-medium'}>
+                                    <Button variant={"ghost"} size={'icon'} className={'text-gray-900 font-medium'}>
+                                        <View size={18} />
+                                    </Button>
+                                </Link>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>View customer</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button variant={"ghost"} size={'icon'} className={'text-gray-800 font-medium'}>
+                                    <FileCheck2 size={18} />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Accept</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button variant={"ghost"} size={'icon'} className={'text-gray-900 font-medium'}>
+                                    <Ban size={18}/>
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Reject</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </div>
+                </TooltipProvider>
             )
         },
     },

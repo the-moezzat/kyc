@@ -6,6 +6,14 @@ import { Checkbox } from "@/components/ui/checkbox"
 import CopiedText from "@/app/(dashboard)/links/_components/copied-link";
 import DeleteLink from "@/app/(dashboard)/links/_components/delete-link";
 import {Pen} from "lucide-react";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+import EditLink from "@/app/(dashboard)/links/_components/edit-link";
+
 
 export type KYCLinks = {
     name: string
@@ -61,12 +69,32 @@ export const columns: ColumnDef<KYCLinks>[] = [
     {
         id: "actions",
         cell: () => {
-            return (<div className={"flex gap-4 items-center"}>
-                    <Button size={'icon'} variant={'ghost'}>
-                        <Pen size={20}/>
-                    </Button>
-                    <DeleteLink/>
+            return (<TooltipProvider>
+                    <div className={"flex gap-1 items-center justify-end"}>
+
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <EditLink/>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Edit Link</p>
+                            </TooltipContent>
+                        </Tooltip>
+
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <DeleteLink/>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Delete Link</p>
+                            </TooltipContent>
+                        </Tooltip>
+
+
+
+
             </div>
+            </TooltipProvider>
 
         )
         },

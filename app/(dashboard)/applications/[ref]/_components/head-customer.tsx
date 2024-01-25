@@ -25,7 +25,7 @@ function HeadCustomer({customerRef, status}: Props) {
                             "High Risk"}</p>
                 </div>
 
-                <div className={'ml-auto max-md:ml-0 flex gap-4 items-center mt-6'}>
+                <div className={'ml-auto max-md:ml-0 flex gap-4 items-center max-md:mt-6'}>
                     <Button
                         size={"sm"}
                         className={'font-semibold text-red-500 hover:text-red-500 hover:bg-red-50 border-red-500 flex gap-2'}

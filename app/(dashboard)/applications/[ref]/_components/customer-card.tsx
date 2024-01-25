@@ -21,7 +21,7 @@ function CustomerCard({title, children, className}: Props) {
                     {title}
                 </CardTitle>
             </CardHeader>
-            <CardContent className={" py-6 gap-4 grid max-md:grid-cols-2 max-sm:grid-cols-1  max-md:px-3 max-md:py-3 " + className}>
+            <CardContent className={" py-6 gap-4 gap-y-10 max-md:gap-y-4 grid max-md:grid-cols-2 max-sm:grid-cols-1  max-md:px-3 max-md:py-3 " + className}>
                 {children}
             </CardContent>
         </Card>
