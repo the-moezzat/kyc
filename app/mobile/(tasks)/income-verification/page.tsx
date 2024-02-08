@@ -9,8 +9,6 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
     type CarouselApi,
 } from "@/components/ui/carousel"
 import Credentials from "@/app/mobile/(tasks)/_components/credentials";
