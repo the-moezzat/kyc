@@ -10,7 +10,7 @@ function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       {/* <NextTopLoader color={'#'} showSpinner={false} /> */}
       {children}
-      <Toaster />
+      <Toaster richColors />
     </QueryClientProvider>
   );
 }
