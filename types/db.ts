@@ -16,7 +16,9 @@ export type Database = {
           id: string
           name: string | null
           state: string | null
+          travelers: number[] | null
           user_id: string | null
+          visitors: number
         }
         Insert: {
           created_at?: string
@@ -24,7 +26,9 @@ export type Database = {
           id?: string
           name?: string | null
           state?: string | null
+          travelers?: number[] | null
           user_id?: string | null
+          visitors?: number
         }
         Update: {
           created_at?: string
@@ -32,7 +36,9 @@ export type Database = {
           id?: string
           name?: string | null
           state?: string | null
+          travelers?: number[] | null
           user_id?: string | null
+          visitors?: number
         }
         Relationships: [
           {
@@ -71,6 +77,44 @@ export type Database = {
             foreignKeyName: "profiles_id_fkey"
             columns: ["id"]
             isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      travellers: {
+        Row: {
+          created_at: string
+          employment: boolean | null
+          id: number
+          income: boolean | null
+          nationality: string | null
+          terms: boolean | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          employment?: boolean | null
+          id?: number
+          income?: boolean | null
+          nationality?: string | null
+          terms?: boolean | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          employment?: boolean | null
+          id?: number
+          income?: boolean | null
+          nationality?: string | null
+          terms?: boolean | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "travellers_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }

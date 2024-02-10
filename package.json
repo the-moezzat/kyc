@@ -6,7 +6,8 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update_types": "npx supabase gen types typescript --project-id \"percfbktsgiqytrdreml\" > types/db.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.5",

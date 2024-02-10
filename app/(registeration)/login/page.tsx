@@ -3,7 +3,7 @@ import LoginForm from './_components/login-form';
 import Link from 'next/link';
 import SigninWithGoogle from '../_components/signin-with-google';
 
-function Page() {
+function Page({searchParams}: {searchParams: {id: string}}) {
   return (
     <div className="space-y-8">
       <div className="flex items-center flex-col gap-2">
@@ -16,14 +16,14 @@ function Page() {
       </div>
 
       <div className="space-y-4">
-        <LoginForm />
-        <SigninWithGoogle />
+        <LoginForm id={searchParams.id} />
+        <SigninWithGoogle id={searchParams.id} />
       </div>
 
       <div className="flex flex-col items-center gap-2">
         <p className="text-sm text-gray-600">
           Don&lsquo;t have an account?{' '}
-          <Link href="/signup" className="text-primary font-semibold">
+          <Link href={searchParams.id ? `/signup?id=${searchParams.id}` : "/signup"} className="text-primary font-semibold">
             Sign up
           </Link>
         </p>

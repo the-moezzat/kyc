@@ -12,14 +12,27 @@ import {
   SheetContent,
   SheetDescription,
   SheetFooter,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useQuery } from 'react-query';
 import Loading from './Loading';
-// import {UserButton} from "@clerk/nextjs";
+import {Database} from "@/types/db";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import UserAvatar from "@/components/user-avatar";
+
 
 const nav = [
   {
@@ -47,10 +60,13 @@ const nav = [
 export default function Sidebar() {
   // Get current pathname and remove / from the beginning
   const pathname = usePathname().split('/')[1];
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
 
-  const { data, isLoading } = useQuery('user', async () =>
-    supabase.auth.getUser()
+  const { data, isLoading } = useQuery('user', async () => {
+      const {data} = await supabase.from('profiles').select('*').single();
+
+      return data
+    }
   );
 
   return (
@@ -82,21 +98,15 @@ export default function Sidebar() {
           </Link>
         ))}
       </nav>
+
       <div className={'flex flex-col items-center gap-6 mt-auto max-md:hidden'}>
         <Link href="#" className={'text-gray-500'}>
           <LifeBuoy />
         </Link>
-        {/* <UserButton afterSignOutUrl={'/'}/> */}
         {isLoading ? (
           <Loading size={'medium'} type="self" />
         ) : (
-          <Avatar>
-            <AvatarImage src={data?.data.user?.user_metadata.picture} />
-            <AvatarFallback className="bg-primary text-white">
-              {data?.data.user?.user_metadata.name.split(' ')[0][0]}
-              {data?.data.user?.user_metadata.name.split(' ')[1][0]}
-            </AvatarFallback>
-          </Avatar>
+            <UserAvatar name={data?.full_name || ''} picture={data?.avatar_url || ''}/>
         )}
       </div>
 
@@ -147,17 +157,22 @@ export default function Sidebar() {
                   <LifeBuoy />
                   <span>Help center</span>
                 </Link>
-                <div className={'flex gap-2 items-center'}>
-                  {/* <UserButton afterSignOutUrl={'/'}/> */}
-                  <div className={'flex flex-col'}>
+                {isLoading ? (
+                    <Loading size={'medium'} type="self" />
+                ) : (
+                    <div className={'flex gap-2 items-center'}>
+                      <UserAvatar name={data?.full_name || ''} picture={data?.avatar_url || ''}/>
+                    <div className={'flex flex-col'}>
                     <span className={'font-medium text-gray-800'}>
-                      Firas El-Mohasen
+                      {data?.full_name}
                     </span>
-                    <span className={'font-medium text-gray-500 text-sm'}>
-                      firas@gmail.com
+                        <span className={'font-medium text-gray-500 text-sm'}>
+                      {data?.email}
                     </span>
-                  </div>
-                </div>
+                      </div>
+                    </div>
+                )}
+
               </div>
             </SheetFooter>
           </SheetContent>

@@ -7,13 +7,16 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import {toast} from "sonner";
+import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
+import {Database} from "@/types/db";
+import {useRouter} from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -24,17 +27,50 @@ const formSchema = z.object({
   }),
 });
 
-export default function LoginForm() {
+interface Props {
+    id: string;
+}
+
+export default function LoginForm({id}: Props) {
+    const router = useRouter();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
+  const supabase = createClientComponentClient<Database>()
+
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+      const {email, password} = values;
+      const notification = toast.loading('Logging in...');
+
+      // const redirectURL = window.location.origin + '/api/auth/callback';
+      const {data, error} = await supabase.auth.signInWithPassword({
+          email,
+          password,
+      });
+
+      if (error) {
+          toast.error('An error occurred. Please try again.', {
+              id: notification,
+              description: <p className={'text-red-100'}>{error.message}</p>
+          });
+
+          return;
+      }
+
+    if (data) {
+        if (id)
+            router.push('/verify/' + id + '/nationality');
+        else
+            router.push('/home');
+    }
+
+      toast.success('You have successfully logged in!', {
+          id: notification,
+          duration: 200
+      });
   }
 
   return (
@@ -65,7 +101,7 @@ export default function LoginForm() {
                   Password
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="Password" {...field} />
+                  <Input placeholder="Password" type={'password'} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -73,7 +109,7 @@ export default function LoginForm() {
           />
         </div>
 
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
           Sign in
         </Button>
       </form>

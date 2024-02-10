@@ -5,7 +5,7 @@ import { Database } from '@/types/db';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import React, { useState } from 'react';
 
-function SigninWithGoogle() {
+function SigninWithGoogle({id}: {id: string}) {
   const supabase = createClientComponentClient<Database>();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -14,11 +14,12 @@ function SigninWithGoogle() {
     setIsLoading(true);
 
     try {
-      const redirectURL = window.location.origin + '/api/auth/callback';
+      const redirectURL = window.location.origin + (id.length > 1 ? `/api/auth/callback?id=${id}` : '/api/auth/callback');
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: redirectURL,
+
         },
       });
     } catch (error) {
