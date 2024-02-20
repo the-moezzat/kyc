@@ -14,7 +14,7 @@ function SigninWithGoogle({id}: {id: string}) {
     setIsLoading(true);
 
     try {
-      const redirectURL = window.location.origin + (id.length > 1 ? `/api/auth/callback?id=${id}` : '/api/auth/callback');
+      const redirectURL = window.location.origin + (id ? `/api/auth/callback?id=${id}` : '/api/auth/callback');
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
