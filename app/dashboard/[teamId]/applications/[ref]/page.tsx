@@ -1,11 +1,10 @@
 import React from 'react';
-import {Button} from "@/components/ui/button";
-import {AlertCircle, CheckCircle2, UserCheck, UserX, XCircle} from "lucide-react";
+import {AlertCircle, CheckCircle2, XCircle} from "lucide-react";
 import {faker} from "@faker-js/faker";
 import CustomerCard from "./_components/customer-card";
 import Info from "./_components/info";
 import Image from "next/image";
-import HeadCustomer from "@/app/(dashboard)/applications/[ref]/_components/head-customer";
+import HeadCustomer from "@/app/dashboard/[teamId]/applications/[ref]/_components/head-customer";
 
 function createRandomUser() {
     const sex = faker.person.sexType();

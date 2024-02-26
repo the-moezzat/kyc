@@ -6,8 +6,8 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import RiskEvaluation from "@/app/(dashboard)/applications/risk-engine/_components/risk-evaluation";
-import Condition from "@/app/(dashboard)/applications/risk-engine/_components/condition";
+import RiskEvaluation from "@/app/dashboard/[teamId]/applications/risk-engine/_components/risk-evaluation";
+import Condition from "@/app/dashboard/[teamId]/applications/risk-engine/_components/condition";
 import { Switch } from "@/components/ui/switch"
 import {Separator} from "@/components/ui/separator";
 import "flag-icons/css/flag-icons.min.css";
