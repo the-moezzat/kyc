@@ -3,8 +3,8 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import CopiedText from '@/app/dashboard/links/_components/copied-link';
-import DeleteLink from '@/app/dashboard/links/_components/delete-link';
+import CopiedText from '@/app/dashboard/[teamId]/links/_components/copied-link';
+import DeleteLink from '@/app/dashboard/[teamId]/links/_components/delete-link';
 import { Pen } from 'lucide-react';
 import {
   Tooltip,
@@ -12,7 +12,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import EditLink from '@/app/dashboard/links/_components/edit-link';
+import EditLink from '@/app/dashboard/[teamId]/links/_components/edit-link';
 import { Database } from '@/types/db';
 import editLink from '../_utils/edit-link';
 

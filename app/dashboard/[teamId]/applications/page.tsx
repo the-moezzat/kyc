@@ -32,7 +32,7 @@ function getData(count: number): Verification[] {
     return data;
 }
 
-export default function Page() {
+export default function Page({params}: {params: {teamId: string}}) {
     const pending = getData(5)
     const accepted = getData(8)
     const rejected = getData(2)

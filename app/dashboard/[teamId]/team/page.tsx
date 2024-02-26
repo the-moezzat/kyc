@@ -5,6 +5,7 @@ import {DataTable} from "@/components/ui/data-table";
 import {columns, Team} from "./_components/columns";
 
 import { faker } from '@faker-js/faker';
+import AddMember from "@/app/dashboard/[teamId]/team/_components/add-member";
 
 function createRandomUser(): Team {
     const firstName = faker.person.firstName();
@@ -29,7 +30,7 @@ function getData(count: number): Team[] {
     return data;
 }
 
-export default function Page() {
+export default function Page({params}: {params: {teamId: string}}) {
     const admin = getData(1);
     const  users = getData(5);
 
@@ -39,12 +40,7 @@ export default function Page() {
                 <h1 className={'font-semibold text-gray-900 text-3xl'}>Team members</h1>
                 <p className={"text-gray-600 mt-2"}>Manage your team members and their account permissions here.</p>
             </div>
-            <Button variant={"outline"} className={"shadow-sm text-gray-700 font-semibold space-x-2"}>
-                <Plus/>
-                <span>
-                    Add team member
-                </span>
-            </Button>
+            <AddMember teamId={params.teamId}/>
         </div>
 
         <Separator orientation="horizontal" className="my-6"/>

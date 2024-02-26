@@ -9,7 +9,7 @@ import {
 import {CreateTeamForm} from "@/app/team/create/_components/create-team-form";
 import { createTeam } from './_actions/createTeam';
 import {toast} from "sonner";
-import InviteForm from "@/app/team/create/_components/invite-form";
+import InviteForm from "@/components/invite-form";
 import {Button} from "@/components/ui/button";
 import { Link as LinkIcon } from 'lucide-react';
 import Link from 'next/link';
@@ -94,7 +94,7 @@ function Page() {
                             </div>
 
                             <div className={'flex flex-col gap-4 items-center justify-center'}>
-                                <InviteForm onSubmit={handleInvite}/>
+                                <InviteForm onSubmit={handleInvite} className={'sm:w-96'}/>
                                 <Button variant={'link'} className={'space-x-2'} onClick={() => navigator.clipboard.writeText(`${new URL(myLocation?.href!).origin}/invite/${teamId}`)} ><LinkIcon size={16}/> <span>
                                 Copy Link Invite</span></Button>
                             </div>

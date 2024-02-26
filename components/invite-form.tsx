@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input"
 const formSchema = z.object({
     email: z.string().email({ message: "Invalid email address" }),
 })
-export default function InviteForm({onSubmit}: { onSubmit: (values: z.infer<typeof formSchema>)=>void }) {
+export default function InviteForm({onSubmit, className}: {className?: string, onSubmit: (values: z.infer<typeof formSchema>)=>void }) {
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -25,12 +25,12 @@ export default function InviteForm({onSubmit}: { onSubmit: (values: z.infer<type
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="gap-2 justify-center flex items-end">
+            <form onSubmit={form.handleSubmit(onSubmit)} className={`gap-2 justify-center flex items-end w-full`}>
                 <FormField
                     control={form.control}
                     name="email"
                     render={({ field }) => (
-                        <FormItem className={'sm:w-96'}>
+                        <FormItem className={className}>
                             <FormLabel className={'text-base'}>Invite Teammate</FormLabel>
                             <FormControl>
                                 <Input placeholder="Email address" {...field} />

@@ -1,5 +1,4 @@
 'use client';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
 import { CopyCheck, LifeBuoy, Users, Link2, Menu } from 'lucide-react';
 import Icon from '@/components/icon';
@@ -34,32 +33,34 @@ import {
 import UserAvatar from "@/components/user-avatar";
 
 
-const nav = [
-  {
-    name: 'Home',
-    href: '/dashboard',
-    icon: Icon.Home,
-  },
-  {
-    name: 'Applications',
-    href: '/dashboard/applications',
-    icon: CopyCheck,
-  },
-  {
-    name: 'Links',
-    href: '/dashboard/links',
-    icon: Link2,
-  },
-  {
-    name: 'Team',
-    href: '/dashboard/team',
-    icon: Users,
-  },
-];
+export default function Sidebar({teamId}: {teamId: string}) {
+  const nav = [
+    {
+      name: 'Home',
+      href: `/dashboard/${teamId}`,
+      icon: Icon.Home,
+    },
+    {
+      name: 'Applications',
+      href: `/dashboard/${teamId}/applications`,
+      icon: CopyCheck,
+    },
+    {
+      name: 'Links',
+      href: `/dashboard/${teamId}/links`,
+      icon: Link2,
+    },
+    {
+      name: 'Team',
+      href: `/dashboard/${teamId}/team`,
+      icon: Users,
+    },
+  ];
 
-export default function Sidebar() {
-  // Get current pathname and remove / from the beginning
-  const pathname = usePathname().split('/')[1];
+  const pathname = usePathname();
+
+  console.log(pathname);
+
   const supabase = createClientComponentClient<Database>();
 
   const { data, isLoading } = useQuery('user', async () => {
@@ -88,7 +89,7 @@ export default function Sidebar() {
           <Link
             key={item.name}
             className={`transition-all p-3 rounded-lg ${
-              `/${pathname}` === item.href
+              `${pathname}` === item.href
                 ? 'text-gray-600 bg-[hsla(210,100%,95%,1)]'
                 : ''
             }`}
@@ -129,7 +130,7 @@ export default function Sidebar() {
                   <Link
                     key={item.name}
                     className={`transition-all p-3 rounded-lg ${
-                      `/${pathname}` === item.href
+                      `${pathname}` === item.href
                         ? 'text-gray-600 bg-[hsla(210,100%,95%,1)]'
                         : ''
                     }`}

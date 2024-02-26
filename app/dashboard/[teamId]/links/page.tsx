@@ -3,12 +3,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { KYCLinks, columns } from './_components/columns';
 import { DataTable } from '@/components/ui/data-table';
-import AddLink from '@/app/dashboard/links/_components/add-link';
+import AddLink from '@/app/dashboard/[teamId]/links/_components/add-link';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Database } from '@/types/db';
 import { useQuery } from 'react-query';
 
-export default function Page() {
+export default function Page({params}: {params: {teamId: string}}) {
   const supabase = createClientComponentClient<Database>();
 
   const { data } = useQuery('links', async () => {
