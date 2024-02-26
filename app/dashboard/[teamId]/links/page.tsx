@@ -12,7 +12,7 @@ export default function Page({params}: {params: {teamId: string}}) {
   const supabase = createClientComponentClient<Database>();
 
   const { data } = useQuery('links', async () => {
-    const { data } = await supabase.from('links').select('*');
+    const { data } = await supabase.from('links').select('*').eq('company_id', params.teamId);
     return data;
   });
 
@@ -27,7 +27,7 @@ export default function Page({params}: {params: {teamId: string}}) {
     <>
       <div className={'flex justify-between'}>
         <h1 className={'font-semibold text-gray-900 text-3xl'}>KYC Links</h1>
-        <AddLink />
+        <AddLink company_id={params.teamId} />
       </div>
       <Tabs defaultValue="active" className="w-full mt-8">
         <TabsList>

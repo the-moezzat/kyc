@@ -19,22 +19,15 @@ import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import { useQueryClient } from 'react-query';
 
-function AddLink() {
+function AddLink({ company_id }: { company_id: string }) {
   const [linkName, setLinkName] = useState<string>('');
   const supabase = createClientComponentClient<Database>();
   const queryClient = useQueryClient();
 
   const handleCreateLink = async (name: string) => {
     try {
-      const user_id = (await supabase.auth.getUser()).data.user?.id;
-      const row = await supabase
-        .from('links')
-        .insert({ name, user_id })
-        .select();
-
-      queryClient.invalidateQueries('links');
-
-      console.log(row)
+      await supabase.from('links').insert([{name, company_id, visitors: 0}])
+      await queryClient.invalidateQueries('links');
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +61,7 @@ function AddLink() {
             type="submit"
             size="sm"
             className="px-3"
-            onClick={() => handleCreateLink(linkName)}
+            onClick={() => handleCreateLink(linkName, )}
           >
             <span className="">Create</span>
           </Button>

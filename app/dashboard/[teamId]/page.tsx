@@ -12,7 +12,7 @@ export default async function Page({params}: {params: {teamId: string}}) {
     const {data} = await supabase.from('team').select('name').eq('id', params.teamId).single()
 
     return <div>
-        <h1 className={'font-semibold text-gray-900 text-3xl'}>Welcome, <span className={'font-normal'}>{data?.name}</span> </h1>
+        <h1 className={'font-semibold text-gray-900 text-3xl'}>{data?.name}'s <span className={'font-normal'}>team</span> </h1>
 
         <div className={'grid grid-cols-4 gap-5 mt-12 max-md:mt-6 max-md:flex max-md:flex-col'}>
             <OverflowCard title={"Total"} value={230} color={" text-[hsla(206,100%,50%,1)] bg-[hsla(206,100%,97%,1)]"}/>

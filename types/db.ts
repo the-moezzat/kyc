@@ -11,41 +11,41 @@ export type Database = {
     Tables: {
       links: {
         Row: {
+          company_id: string | null
           created_at: string
           description: string | null
           id: string
           name: string | null
           state: string | null
-          travelers: number[] | null
-          user_id: string | null
+          valid_until: number | null
           visitors: number
         }
         Insert: {
+          company_id?: string | null
           created_at?: string
           description?: string | null
           id?: string
           name?: string | null
           state?: string | null
-          travelers?: number[] | null
-          user_id?: string | null
-          visitors?: number
+          valid_until?: number | null
+          visitors: number
         }
         Update: {
+          company_id?: string | null
           created_at?: string
           description?: string | null
           id?: string
           name?: string | null
           state?: string | null
-          travelers?: number[] | null
-          user_id?: string | null
+          valid_until?: number | null
           visitors?: number
         }
         Relationships: [
           {
-            foreignKeyName: "links_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: "public_links_company_id_fkey"
+            columns: ["company_id"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "team"
             referencedColumns: ["id"]
           }
         ]
