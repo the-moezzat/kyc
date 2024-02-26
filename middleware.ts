@@ -37,5 +37,6 @@ export const config = {
     '/verify/(.*)/upload-files',
     '/verify/(.*)/income-verification',
     '/verify/(.*)/employment-verification',
+    '/team/(.*)'
   ],
 };

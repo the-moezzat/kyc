@@ -37,22 +37,22 @@ import UserAvatar from "@/components/user-avatar";
 const nav = [
   {
     name: 'Home',
-    href: '/home',
+    href: '/dashboard',
     icon: Icon.Home,
   },
   {
     name: 'Applications',
-    href: '/applications',
+    href: '/dashboard/applications',
     icon: CopyCheck,
   },
   {
     name: 'Links',
-    href: '/links',
+    href: '/dashboard/links',
     icon: Link2,
   },
   {
     name: 'Team',
-    href: '/team',
+    href: '/dashboard/team',
     icon: Users,
   },
 ];

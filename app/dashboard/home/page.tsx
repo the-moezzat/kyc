@@ -1,4 +1,4 @@
-import OverflowCard from "@/app/(dashboard)/home/_components/overview-card";
+import OverflowCard from "@/app/dashboard/home/_components/overview-card";
 import {DataTable} from "@/components/ui/data-table";
 import {columns, Verification} from "./_components/columns";
 import { faker } from '@faker-js/faker';

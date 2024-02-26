@@ -82,6 +82,88 @@ export type Database = {
           }
         ]
       }
+      team: {
+        Row: {
+          created_at: string
+          id: number
+          name: string | null
+          owner_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name?: string | null
+          owner_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          name?: string | null
+          owner_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_team_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_team_user_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      team_membership: {
+        Row: {
+          id: number
+          join_date: string | null
+          member_id: string
+          role: string | null
+          team_id: number
+        }
+        Insert: {
+          id?: never
+          join_date?: string | null
+          member_id?: string
+          role?: string | null
+          team_id: number
+        }
+        Update: {
+          id?: never
+          join_date?: string | null
+          member_id?: string
+          role?: string | null
+          team_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_team_membership_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_membership_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_membership_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "team"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       travellers: {
         Row: {
           created_at: string
