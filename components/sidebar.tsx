@@ -59,8 +59,6 @@ export default function Sidebar({teamId}: {teamId: string}) {
 
   const pathname = usePathname();
 
-  console.log(pathname);
-
   const supabase = createClientComponentClient<Database>();
 
   const { data, isLoading } = useQuery('user', async () => {

@@ -85,19 +85,19 @@ export type Database = {
       team: {
         Row: {
           created_at: string
-          id: number
+          id: string
           name: string | null
           owner_id: string | null
         }
         Insert: {
           created_at?: string
-          id?: number
+          id?: string
           name?: string | null
           owner_id?: string | null
         }
         Update: {
           created_at?: string
-          id?: number
+          id?: string
           name?: string | null
           owner_id?: string | null
         }
@@ -124,21 +124,21 @@ export type Database = {
           join_date: string | null
           member_id: string
           role: string | null
-          team_id: number
+          team_id: string | null
         }
         Insert: {
           id?: never
           join_date?: string | null
           member_id?: string
           role?: string | null
-          team_id: number
+          team_id?: string | null
         }
         Update: {
           id?: never
           join_date?: string | null
           member_id?: string
           role?: string | null
-          team_id?: number
+          team_id?: string | null
         }
         Relationships: [
           {
@@ -149,14 +149,7 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "team_membership_member_id_fkey"
-            columns: ["member_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "team_membership_team_id_fkey"
+            foreignKeyName: "public_team_membership_team_id_fkey"
             columns: ["team_id"]
             isOneToOne: false
             referencedRelation: "team"

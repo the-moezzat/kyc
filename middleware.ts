@@ -1,12 +1,13 @@
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextRequest, NextResponse } from 'next/server';
 import {createClient} from "@/lib/supabase/middleware";
+import {Database} from "@/types/db";
 
 // The middleware is used to refresh the user's session before loading Server Component routes
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const url = new URL(req.url);
-  const supabase = createMiddlewareClient({req, res});
+  const supabase = createMiddlewareClient<Database>({req, res});
 
 
 
@@ -41,10 +42,8 @@ export async function middleware(req: NextRequest) {
   // if user is logged in and tries to access team he isn't a member of, redirect to the team dashboard
   if (url.pathname.split('/')[1] === 'dashboard') {
       const teamId = url.pathname.split('/')[2];
-      console.log(teamId)
       const {data: team, error} = await supabase.from('team_membership').select('team_id').eq('team_id', teamId);
 
-      console.log(team)
 
       if (!team || team.length === 0) {
         url.pathname = '/dashboard';
@@ -52,21 +51,48 @@ export async function middleware(req: NextRequest) {
       }
   }
 
+  // add the user to the team using the invitation link
+    if (url.pathname.split('/')[1] === 'invite') {
+        const token = url.pathname.split('/')[2];
+        const {data} = await supabase.from('team_membership').select('team_id').eq('team_id', token);
+
+        if (data) {
+            url.pathname = `/dashboard/${token}`;
+            return NextResponse.redirect(url);
+        }
+
+        const {data: invite, error} = await supabase.from('team_membership').insert({
+          team_id: token,
+          role: 'member',
+        })
+
+        if (error) {
+        url.pathname = '/dashboard';
+        return NextResponse.redirect(url);
+        }
+
+        url.pathname = `/dashboard/${token}`;
+        return NextResponse.redirect(url);
+    }
+
   return res;
 }
 
 export const config = {
-  matcher: ['/dashboard',
-    '/dashboard/(.*)/links',
-    '/dashboard/(.*)',
-    '/dashboard/(.*)//team',
-    '/dashboard/(.*)//applications',
-    '/verify/(.*)/nationality',
-    '/verify/(.*)/signatures',
-    '/verify/(.*)/tasks',
-    '/verify/(.*)/upload-files',
-    '/verify/(.*)/income-verification',
-    '/verify/(.*)/employment-verification',
-    '/team/(.*)'
+  matcher: [
+      '/dashboard',
+      '/dashboard/(.*)/links',
+      '/dashboard/(.*)',
+      '/dashboard/(.*)//team',
+      '/dashboard/(.*)//applications',
+      '/verify/(.*)/nationality',
+      '/verify/(.*)/signatures',
+      '/verify/(.*)/tasks',
+      '/verify/(.*)/upload-files',
+      '/verify/(.*)/income-verification',
+      '/verify/(.*)/employment-verification',
+      '/team/(.*)',
+      '/invite/(.*)',
+      '/invite'
   ],
 };
