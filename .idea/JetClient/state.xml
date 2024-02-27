@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JetClientState">
+    <option name="folders">
+      <list>
+        <folderState>
+          <option name="id" value="09f632ae-dc93-4dcd-ac28-655b5fe05923" />
+          <option name="name" value="New Collection" />
+          <option name="sortWeight" value="1000000" />
+          <option name="syncProperties">
+            <synchronizationPropertiesState>
+              <option name="folderPath" value="E:\projects\kyc\.jetclient" />
+            </synchronizationPropertiesState>
+          </option>
+          <option name="variables">
+            <variablesState>
+              <option name="json" value="" />
+            </variablesState>
+          </option>
+        </folderState>
+      </list>
+    </option>
     <option name="id" value="48efb25f-4206-48e5-923c-3013e8198420" />
   </component>
 </project>

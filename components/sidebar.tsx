@@ -62,7 +62,8 @@ export default function Sidebar({teamId}: {teamId: string}) {
   const supabase = createClientComponentClient<Database>();
 
   const { data, isLoading } = useQuery('user', async () => {
-      const {data} = await supabase.from('profiles').select('*').single();
+    const {data: {session}} = await supabase.auth.getSession()
+    const {data} = await supabase.from('profiles').select('*').eq('id', session?.user.id!).single();
 
       return data
     }

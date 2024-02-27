@@ -123,21 +123,21 @@ export type Database = {
           id: number
           join_date: string | null
           member_id: string
-          role: string | null
+          role: Database["public"]["Enums"]["role"]
           team_id: string | null
         }
         Insert: {
           id?: never
           join_date?: string | null
           member_id?: string
-          role?: string | null
+          role?: Database["public"]["Enums"]["role"]
           team_id?: string | null
         }
         Update: {
           id?: never
           join_date?: string | null
           member_id?: string
-          role?: string | null
+          role?: Database["public"]["Enums"]["role"]
           team_id?: string | null
         }
         Relationships: [
@@ -145,7 +145,7 @@ export type Database = {
             foreignKeyName: "public_team_membership_member_id_fkey"
             columns: ["member_id"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
           {
@@ -203,7 +203,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      role: "admin" | "owner" | "member"
     }
     CompositeTypes: {
       [_ in never]: never

@@ -17,7 +17,7 @@ export async function createTeam(name: string) {
 
     const {data, error} = await supabase.from('team_membership').insert({
         team_id: teamId.id,
-        role: 'admin',
+        role: 'owner',
     }).select('*').single();
 
     if (!data || error) {

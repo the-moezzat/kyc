@@ -12,6 +12,10 @@ import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {Database} from "@/types/db";
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
+import Link from "next/link";
+import AddMember from "@/components/add-member";
+import {Button} from "@/components/ui/button";
+import TeamsViewer from "@/components/teams-viewer";
 
 interface Props {
     picture: string;
@@ -53,22 +57,23 @@ function UserAvatar({picture, name}: Props) {
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-                        <DropdownMenuPortal>
-                            <DropdownMenuSubContent>
-                                <DropdownMenuItem>Email</DropdownMenuItem>
-                                <DropdownMenuItem>Message</DropdownMenuItem>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem>More...</DropdownMenuItem>
-                            </DropdownMenuSubContent>
-                        </DropdownMenuPortal>
-                    </DropdownMenuSub>
+                    <DropdownMenuItem asChild>
+                            <TeamsViewer>
+                                <Button className={'w-full h-8 justify-start text-gray-700 px-2'} variant={'ghost'} size={'sm'}>Teams</Button>
+                            </TeamsViewer>
+                    </DropdownMenuItem>  <DropdownMenuItem asChild>
+                            <AddMember>
+                                <Button className={'w-full h-8 justify-start text-gray-700 px-2'} variant={'ghost'} size={'sm'}>Invite users</Button>
+                            </AddMember>
+                    </DropdownMenuItem>
+
                     <DropdownMenuItem>
-                        New Team
+                        <Link href={'/team/create'} className={'block w-full'}>
+                            New Team
+                        </Link>
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
+
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className={'text-red-700 focus:bg-red-100 focus:text-red-700 cursor-pointer'} onClick={() => handleSignOut()}>
                     Log out

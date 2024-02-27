@@ -13,8 +13,8 @@ export type Team = {
     name: string;
     email: string;
     avatar: string;
-    dateAdded: Date;
-    lastActive: Date;
+    dateAdded: string;
+    lastActive: string;
 }
 
 export const columns: ColumnDef<Team>[] = [
@@ -52,7 +52,7 @@ export const columns: ColumnDef<Team>[] = [
             return <div className={'flex gap-2 items-center'}>
                 <Avatar>
                     <AvatarImage src={avatar} />
-                    <AvatarFallback>{`${name.split(" ")[0][0]}${name.split(" ")[1][0]}`}</AvatarFallback>
+                    <AvatarFallback>{`${name?.split(" ")[0][0]}${name?.split(" ")[1][0] || ''}`}</AvatarFallback>
                 </Avatar>
                 <div className={'flex flex-col'}>
                     <p className={'text-sm text-gray-800'}>
@@ -70,14 +70,14 @@ export const columns: ColumnDef<Team>[] = [
         header: "Date Added",
         cell: ({ row }) => {
             const date = row.original.dateAdded
-            return <span>{date.toLocaleDateString()}</span>
+            return <span>{new Date(date).toLocaleDateString()}</span>
         }
     },{
         accessorKey: "lastActive",
         header: "Last Active",
         cell: ({ row }) => {
             const date = row.original.dateAdded
-            return <span>{date.toLocaleDateString()}</span>
+            return <span>{new Date(date).toLocaleDateString()}</span>
         }
     },
 

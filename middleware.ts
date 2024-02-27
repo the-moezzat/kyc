@@ -29,7 +29,7 @@ export async function middleware(req: NextRequest) {
 
   // if user is logged in and tries to access /dashboard, redirect to the team dashboard
   if (url.pathname === '/dashboard') {
-    const {data: team, error} = await supabase.from('team_membership').select('team_id');
+    const {data: team, error} = await supabase.from('team_membership').select('team_id').eq('member_id', session.user.id);
 
     if (team?.length === 0) {
         url.pathname = '/team/create';
@@ -42,7 +42,7 @@ export async function middleware(req: NextRequest) {
   // if user is logged in and tries to access team he isn't a member of, redirect to the team dashboard
   if (url.pathname.split('/')[1] === 'dashboard') {
       const teamId = url.pathname.split('/')[2];
-      const {data: team, error} = await supabase.from('team_membership').select('team_id').eq('team_id', teamId);
+      const {data: team, error} = await supabase.from('team_membership').select('team_id').eq('member_id', session.user.id).eq('team_id', teamId);
 
 
       if (!team || team.length === 0) {
@@ -54,9 +54,9 @@ export async function middleware(req: NextRequest) {
   // add the user to the team using the invitation link
     if (url.pathname.split('/')[1] === 'invite') {
         const token = url.pathname.split('/')[2];
-        const {data} = await supabase.from('team_membership').select('team_id').eq('team_id', token);
+        const {data} = await supabase.from('team_membership').select('team_id').eq('member_id', session.user.id).eq('team_id', token);
 
-        if (data) {
+        if (data?.length !== 0) {
             url.pathname = `/dashboard/${token}`;
             return NextResponse.redirect(url);
         }

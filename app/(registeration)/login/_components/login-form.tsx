@@ -17,6 +17,7 @@ import {toast} from "sonner";
 import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import {Database} from "@/types/db";
 import {useRouter} from "next/navigation";
+import config from "@/config";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -64,7 +65,7 @@ export default function LoginForm({id}: Props) {
         if (id)
             router.push('/verify/' + id + '/nationality');
         else
-            router.push('/home');
+            router.push(config.auth.callbackUrl);
     }
 
       toast.success('You have successfully logged in!', {

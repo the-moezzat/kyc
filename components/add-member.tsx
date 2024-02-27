@@ -11,10 +11,13 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import {Link as LinkIcon, Plus} from 'lucide-react';
+import {Link as LinkIcon} from 'lucide-react';
 import InviteForm from "@/components/invite-form";
 import { toast } from 'sonner';
-function AddMember({teamId}: {teamId: string}) {
+import {usePathname} from "next/navigation";
+function AddMember({children}: {children: React.ReactNode}) {
+    const teamId = usePathname().split('/')[2]
+
     const handleInvite = async ({email}: {email:string}) => {
         const data = await fetch('/api/invite',{
             method: 'POST',
@@ -32,12 +35,7 @@ function AddMember({teamId}: {teamId: string}) {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant={"outline"} className={"shadow-sm text-gray-700 font-semibold space-x-2"}>
-                    <Plus/>
-                    <span>
-                    Add team member
-                </span>
-                </Button>
+                {children}
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>

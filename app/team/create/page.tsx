@@ -35,7 +35,7 @@ function Page() {
             id: toastId
         })
 
-        setTeamId(team.member_id);
+        setTeamId(team.team_id!);
 
         api?.scrollNext();
         return
