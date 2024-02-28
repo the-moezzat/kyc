@@ -136,7 +136,7 @@ export const columns: ColumnDef<Verification>[] = [
                     <div className={'flex items-center justify-end'}>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <Link href={"/applications/"+customer.ref} className={'text-gray-800 font-medium'}>
+                                <Link href={"applications/"+customer.ref} className={'text-gray-800 font-medium'}>
                                     <Button variant={"ghost"} size={'icon'} className={'text-gray-900 font-medium'}>
                                         <View size={18} />
                                     </Button>

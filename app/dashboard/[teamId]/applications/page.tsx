@@ -40,7 +40,7 @@ export default function Page({params}: {params: {teamId: string}}) {
     return <>
         <header className={'flex items-center justify-between'}>
             <h1 className={'font-semibold text-gray-900 text-3xl'}>Applications</h1>
-            <Link href={'/applications/risk-engine'}>
+            <Link href={`applications/risk-engine`}>
                 <Button variant={'outline'}  className={"font-semibold shadow-sm"}>Risk Engine</Button>
             </Link>
         </header>

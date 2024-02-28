@@ -33,6 +33,7 @@ function createRandomUser() {
 }
 
 function Page({params}: {params: {ref: string}}) {
+    console.log(params)
     return (
         <>
             <HeadCustomer customerRef={params.ref} status={faker.helpers.arrayElement(['pending', 'approved', 'rejected'])}/>
