@@ -16,18 +16,18 @@ export async function GET(req: NextRequest) {
   const code = requestUrl.searchParams.get("code");
 
   if (code) {
-    const supabase = createRouteHandlerClient<Database>({ cookies });
-    const session =  await supabase.auth.exchangeCodeForSession(code);
+    const supabase = createRouteHandlerClient({ cookies });
+    await supabase.auth.exchangeCodeForSession(code);
 
-    if (session.error)
-      return NextResponse.redirect(requestUrl.origin + `/login`);
-    
-   const {data} = await supabase.from('travellers').upsert({user_id: session.data.user?.id}).eq("user_id", session.data.user?.id ).select('id').single();
-   console.log(data);
+   //  if (session.error)
+   //    return NextResponse.redirect(requestUrl.origin + `/login`);
+   //
+   // const {data} = await supabase.from('travellers').upsert({user_id: session.data.user?.id}).eq("user_id", session.data.user?.id ).select('id').single();
+   // console.log(data);
   }
 
   if (id) 
     return NextResponse.redirect(requestUrl.origin + `/verify/${id}/nationality`);
-  else
-    return NextResponse.redirect(requestUrl.origin + config.auth.callbackUrl);
+
+  return NextResponse.redirect(requestUrl.origin + config.auth.callbackUrl);
 }
