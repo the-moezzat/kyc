@@ -4,7 +4,8 @@ import {Button} from "@/components/ui/button";
 import {CheckCircle} from "lucide-react";
 import Link from "next/link";
 
-function Page({params}: {params: {id: string}}) {
+async function Page({params}: {params: {id: string}}) {
+
     return (
       <div className={'h-dvh grid grid-rows-2 gap-8'}>
         <Image

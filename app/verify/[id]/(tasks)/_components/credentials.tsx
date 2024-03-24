@@ -19,6 +19,7 @@ interface Props {
     onSuccessfulSubmit: () => void
 }
 
+// TODO add email
 const formSchema = z.object({
     username: z.string({required_error: "Enter your username"}).min(2, "Username must be at least 2 characters"),
     password: z.string().min(6)
