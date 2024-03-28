@@ -10,9 +10,8 @@ export async function createTeam(name: string) {
         name,
     }).select('id').single();
 
-    if(teamError || !teamId) {
+    if (teamError || !teamId) {
         return {error: teamError, data: null}
-
     }
 
     const {data, error} = await supabase.from('team_membership').insert({

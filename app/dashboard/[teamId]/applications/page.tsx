@@ -13,7 +13,7 @@ function createRandomUser(): Verification {
 
     return {
         name: `${firstName} ${lastName}`,
-        country: faker.location.countryCode().toLowerCase(),
+        country: faker.helpers.arrayElement(["in", "id", "ng"]),
         email,
         submission: faker.date.past(),
         ref: faker.string.nanoid(8),

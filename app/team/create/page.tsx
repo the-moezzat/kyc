@@ -26,7 +26,8 @@ function Page() {
         const {data: team, error} = await createTeam(name)
         if (error || !team) {
             toast.error('Failed to create team', {
-                id: toastId
+                id: toastId,
+                description: error?.message
             })
             return
         }
